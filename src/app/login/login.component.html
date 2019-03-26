@@ -4,11 +4,11 @@
         <Label class="header" text="Accesibilidad móvil"></Label>
 
         <PreviousNextView>
-            <GridLayout rows="auto, auto, auto">
+            <GridLayout rows="auto, auto">
                 <StackLayout row="0" class="input-field">
-                    <TextField class="input" hint="Correo" [isEnabled]="!processing" keyboardType="email"
-                        autocorrect="false" autocapitalizationType="none" [(ngModel)]="credentials.user" returnKeyType="next"
-                        (returnPress)="focusPassword()"></TextField>
+                    <TextField #user class="input" hint="Correo" [isEnabled]="!processing" keyboardType="email"
+                        autocorrect="false" autocapitalizationType="none" [(ngModel)]="credentials.user"
+                        returnKeyType="next" (returnPress)="focusPassword()"></TextField>
                     <StackLayout class="hr-light"></StackLayout>
                 </StackLayout>
 
@@ -31,8 +31,7 @@
 
         <Button [text]="isLoggingIn ? 'Iniciar sesión' : 'Regístrate'" [isEnabled]="!processing" (tap)="submit()"
             class="btn btn-primary m-t-20"></Button>
-        <Label *ngIf="isLoggingIn" text="¿Olvidaste tu contraseña?" class="login-label"
-            (tap)="forgotPassword()"></Label>
+        <Label *ngIf="isLoggingIn" text="¿Olvidaste tu contraseña?" class="login-label"></Label>
     </StackLayout>
 
     <Label class="login-label sign-up-label" (tap)="toggleForm()">

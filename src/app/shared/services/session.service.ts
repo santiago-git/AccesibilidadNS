@@ -30,12 +30,10 @@ export class SessionService {
         console.log('SessionService', 'No se pudo guardar el usuario')
       }
     }
-    return null;
-  }
+    console.log(sessionString);
 
-  static isUserLoggedIn(): boolean {
-    const sessionString = appSettings.getString('session');
-    return sessionString && sessionString !== '';
+    this.logOut();
+    return null;
   }
 
   login(patient: Patient) {
@@ -55,8 +53,14 @@ export class SessionService {
   }
 
   logOut() {
-    this.routerExtensions.navigate(["/login"], { clearHistory: true });
     appSettings.remove('session');
+    this.routerExtensions.navigate(["/login"], { clearHistory: true });
+  }
+
+
+  static isUserLoggedIn(): boolean {
+    const sessionString = appSettings.getString('session');
+    return sessionString && sessionString !== '';
   }
 
 }

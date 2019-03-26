@@ -1,8 +1,31 @@
 <!-- This is the home page. -->
 <!-- Look in the login folder for the login code. -->
-<ActionBar title="YOUR APP"></ActionBar>
+<ActionBar title="Accesibilidad móvil"></ActionBar>
+<StackLayout orientation="vertical" horizontalAlignment="center" verticalAlignment="center" class="form">
+    <Label [text]="message" textWrap="true" class="label-info"></Label>
 
-<StackLayout>
-    <Label class="body m-20" [text]="message" textWrap="true"></Label>
-    <Button class="btn btn-primary" text="Log out" (tap)="logout()"></Button>
+    <!-- <TextField class="input" hint="Descripción" autocorrect="false" autocapitalizationType="none"
+        [(ngModel)]="medicalEmergency.patient_description" returnKeyType="next"></TextField>
+    <StackLayout class="hr-light"></StackLayout>
+    <TextField class="input" hint="Dirección de lugar" autocorrect="false" autocapitalizationType="none"
+        [(ngModel)]="medicalEmergency.address" returnKeyType="next"></TextField>
+    <StackLayout class="hr-light"></StackLayout> -->
+
+    <StackLayout class="input-field">
+        <TextField #patient_description class="input" hint="Descripción" autocorrect="false" autocapitalizationType="none"
+            [(ngModel)]="medicalEmergency.patient_description" returnKeyType="next"></TextField>
+        <StackLayout class="hr-light"></StackLayout>
+    </StackLayout>
+    <StackLayout class="input-field">
+        <TextField class="input" hint="Dirección de lugar (opcional)" autocorrect="false" autocapitalizationType="none"
+            [(ngModel)]="medicalEmergency.address" returnKeyType="next"></TextField>
+        <StackLayout class="hr-light"></StackLayout>
+        <StackLayout class="hr-light"></StackLayout>
+    </StackLayout>
+
+    <Button [isEnabled]="!processing" text="Registrar emergencia" (tap)="createMedicalEmergency()"
+        class="btn btn-primary"></Button>
+    <!-- <Button class="btn btn-primary" text="Cerrar sesión" (tap)="logout()"></Button> -->
+
+    <ActivityIndicator [busy]="processing"></ActivityIndicator>
 </StackLayout>

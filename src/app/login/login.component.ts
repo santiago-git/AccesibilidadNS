@@ -19,6 +19,7 @@ export class LoginComponent {
         password: "123456789"
     };
     processing = false;
+    @ViewChild("user") user: ElementRef;
     @ViewChild("password") password: ElementRef;
     @ViewChild("confirmPassword") confirmPassword: ElementRef;
 
@@ -33,7 +34,7 @@ export class LoginComponent {
     }
 
     toggleForm() {
-        this.isLoggingIn = !this.isLoggingIn;
+        // this.isLoggingIn = !this.isLoggingIn;
     }
 
     submit() {
@@ -49,6 +50,7 @@ export class LoginComponent {
             this.processing = false;
             // this.routerExtensions.navigate(["/home"], { clearHistory: true });
         }, err => {
+            this.focusUser();
             this.processing = false;
             alert(err);
         });
@@ -109,9 +111,14 @@ export class LoginComponent {
         });
     }
 
+    focusUser() {
+        this.user.nativeElement.focus();
+    }
+    
     focusPassword() {
         this.password.nativeElement.focus();
     }
+
     focusConfirmPassword() {
         if (!this.isLoggingIn) {
             this.confirmPassword.nativeElement.focus();
@@ -120,8 +127,8 @@ export class LoginComponent {
 
     alert(message: string) {
         return alert({
-            title: "APP NAME",
-            okButtonText: "OK",
+            title: "Accesibilidad móvil",
+            okButtonText: "Aceptar",
             message: message
         });
     }
